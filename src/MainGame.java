@@ -28,16 +28,43 @@ public class MainGame extends JFrame {
     } //end of constructor
 
     public static void main(String[] args) throws IOException{
-        //Main Window Frame
-        window = new MainGame();
-        //Start Button
-        startButton = Tools.createButton("Play", 400);
-        //Exit Button
-        exitButton = Tools.createButton("Exit", 450);
-        actionForExitButton();
+        startMainFrame();
+    }
 
+    public static void startMainFrame(){
+        EventQueue.invokeLater(() -> {
+            //Main Window Frame
+            window = new MainGame();
+            window.setTitle("Snake");
+            displayButtons();
+        });
+    }
+
+    public static void displayButtons(){
+        //Play Button
+        startButton = Tools.createButton("Play", 100,400);
+        actionForStartButton();
+        //Exit Button
+        exitButton = Tools.createButton("Exit", 100,450);
+        actionForExitButton();
         window.getContentPane().add(startButton);
         window.getContentPane().add(exitButton);
+    }
+
+    public static void actionForStartButton(){
+        startButton.addActionListener(event -> {
+            JFrame gameFrame = new JFrame();
+            gameFrame.setSize(800, 600);
+            gameFrame.setTitle("Snake");
+            gameFrame.setVisible(true);
+            gameFrame.setLocationRelativeTo(null);
+            Snake snakePanel = new Snake(gameFrame);
+            KeyboardController.inGame = true;
+            gameFrame.add(snakePanel);
+            gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            window.setVisible(false);
+            window.dispose();
+        });
     }
 
     public static void actionForExitButton(){

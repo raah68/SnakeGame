@@ -12,9 +12,9 @@ public class Tools {
     //No constructor needed here
 
     //This method will create a button
-    public static JButton createButton(String buttonName, Integer yAxis) {
+    public static JButton createButton(String buttonName, Integer xAxis, Integer yAxis) {
         JButton button = new JButton(buttonName);
-        button.setBounds(100, yAxis, 200, 30);
+        button.setBounds(xAxis, yAxis, 200, 30);
         button.setForeground(Color.WHITE);
         button.setBackground(Color.black);
         button.setBorderPainted(true);
